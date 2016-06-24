@@ -13,6 +13,7 @@ The following packages are required:
 * Python 2.7.x
 * Pillow and PIL
 * py_bing_search
+* BeautifulSoup
 * An API key for Bing, from Microsoft Azure.
 
 All can be installed with pip, except for the API key.

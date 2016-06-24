@@ -1,8 +1,6 @@
 from py_bing_search import PyBingWebSearch
 import urllib
-from HTMLParser import HTMLParser
 from BeautifulSoup import BeautifulSoup
-import copy
 
 
 class Scraper(object):
