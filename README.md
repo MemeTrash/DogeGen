@@ -22,7 +22,7 @@ All can be installed with pip, except for the API key.
 Run the following from within the project root:
 
 ```
-python dogegen.py "output_directory" "your_text_here"
+python dogegen.py "output_directory" "your_text" "your_api_key"
 ```
 
 An image will be generated with Doge quotes pertaining to your text, scraped from webpages with Bing.
