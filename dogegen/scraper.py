@@ -67,4 +67,19 @@ class Scraper(object):
         return result
 
     def get_words(self, paragraphs):
-        pass
+        """
+        Take list of paragraphs, get individual words and filter out non-ASCII text.
+
+        Args:
+            paragraphs (list[str]): List of paragraph strings.
+
+        Returns:
+            list[str]: List of lower-case words from paragraphs.
+        """
+        words = []
+        for par in paragraphs:
+            new_words = par.split(" ")
+            filtered_words = [w.lower() for w in new_words if w.isalpha()]
+            words.extend(filtered_words)
+        print words
+        return words
