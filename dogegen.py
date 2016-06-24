@@ -7,6 +7,8 @@ def main(args):
     text_inp = args[2]
     api_key = args[3]
     similar_words = dogegen.Scraper(api_key).get_words_for(text_inp)
+    chosen_words = dogegen.choose_words(similar_words)
+    print chosen_words
     # TODO
 
 

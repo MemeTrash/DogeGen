@@ -44,7 +44,7 @@ class Scraper(object):
         Get strings of HTML from all search results, store in self.
         """
         for result in self.search_results:
-            url = result.url
+            url = urllib.quote(result.url.encode('utf8'), ':/')
             self.scraped_html.append(urllib.urlopen(url).read())
 
     def get_paragraphs(self):
@@ -56,12 +56,16 @@ class Scraper(object):
         """
         result = []
         for webpage in self.scraped_html:
-            soup = BeautifulSoup(webpage)
-            paragraphs = soup.findAll('p')
-            for par in paragraphs:
-                if par.string is not None:
-                    stripped_par = str(par.string)
-                    result.append(stripped_par)
+            # on narrow python 2.7 builds, cannot handle UTF-16
+            try:
+                soup = BeautifulSoup(webpage)
+                paragraphs = soup.findAll('p')
+                for par in paragraphs:
+                    if par.string is not None:
+                        stripped_par = str(par.string)
+                        result.append(stripped_par)
+            except ValueError:
+                continue
         return result
 
     def get_words(self, paragraphs):
@@ -79,5 +83,4 @@ class Scraper(object):
             new_words = par.split(" ")
             filtered_words = [w.lower() for w in new_words if w.isalpha()]
             words.extend(filtered_words)
-        print words
         return words
