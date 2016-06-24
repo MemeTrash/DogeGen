@@ -1,4 +1,8 @@
 from py_bing_search import PyBingWebSearch
+import urllib
+from HTMLParser import HTMLParser
+from BeautifulSoup import BeautifulSoup
+import copy
 
 
 class Scraper(object):
@@ -43,11 +47,24 @@ class Scraper(object):
         """
         for result in self.search_results:
             url = result.url
-            # TODO: get HTML from url
-            print url
+            self.scraped_html.append(urllib.urlopen(url).read())
 
     def get_paragraphs(self):
-        pass
+        """
+        Take scraped HTML from earlier and return a list of paragraph strings.
+
+        Returns:
+            list[str]: List of strings of paragraph content.
+        """
+        result = []
+        for webpage in self.scraped_html:
+            soup = BeautifulSoup(webpage)
+            paragraphs = soup.findAll('p')
+            for par in paragraphs:
+                if par.string is not None:
+                    stripped_par = str(par.string)
+                    result.append(stripped_par)
+        return result
 
     def get_words(self, paragraphs):
         pass
