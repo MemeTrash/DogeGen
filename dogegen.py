@@ -3,13 +3,12 @@ import dogegen
 
 
 def main(args):
-    out_dir_str = args[1]
-    text_inp = args[2]
-    api_key = args[3]
-    similar_words = dogegen.Scraper(api_key).get_words_for(text_inp)
-    chosen_words = dogegen.choose_words(similar_words)
-    print chosen_words
-    # TODO
+    if args[0] == '--online-text':
+        pass
+        # TODO: use 'online' module
+    else:
+        pass
+        # TODO: interpret text to doge explicitly
 
 
 if __name__ == "__main__":

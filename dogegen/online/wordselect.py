@@ -46,7 +46,6 @@ def get_word_frequencies(words):
     Returns:
         dict: Dictionary of words as keys for their frequencies.
     """
-    # FIXME
     result = defaultdict(int)
     for word in words:
         result[word] += 1

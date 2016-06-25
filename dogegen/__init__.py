@@ -1,2 +1,1 @@
-from scraper import *
-from wordselect import *
+from online import *
