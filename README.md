@@ -14,9 +14,16 @@ The following packages are required:
 * Pillow and PIL
 * py_bing_search
 * BeautifulSoup
+* nltk
 * An API key for Bing, from Microsoft Azure.
 
 All can be installed with pip, except for the API key.
+
+When nltk is installed, please run the following via terminal:
+
+```
+python -m nltk.downloader treebank maxent_treebank_pos_tagger wordnet wordnet_ic
+```
 
 ## Execution
 
