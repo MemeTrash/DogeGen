@@ -1,3 +1,9 @@
+"""
+Word selection from web scraper.
+
+Author: Jack Romo <sharrackor@gmail.com>
+"""
+
 from collections import defaultdict
 
 

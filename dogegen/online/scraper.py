@@ -1,3 +1,9 @@
+"""
+Web scraper.
+
+Author: Jack Romo <sharrackor@gmail.com>
+"""
+
 from py_bing_search import PyBingWebSearch
 import urllib
 from BeautifulSoup import BeautifulSoup
