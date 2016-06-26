@@ -98,6 +98,3 @@ def get_doge_descriptors(word_ls):
             allowed_descriptors = [s for s in possible_descs if s not in chosen_descriptors]
         chosen_descriptors.append(random.choice(allowed_descriptors))
     return chosen_descriptors
-
-
-print dogeify_text('Process finished with exit code', 0.3, 0)
