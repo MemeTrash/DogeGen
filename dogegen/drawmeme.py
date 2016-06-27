@@ -9,6 +9,8 @@ from PIL import ImageDraw
 from PIL import ImageFont
 import random
 
+MAX_FONT_SIZE = 20
+
 
 def draw_doge_meme(from_dir, to_dir, font_path, phrases):
     """
@@ -63,7 +65,7 @@ def get_font(image, text, font_path, img_width_fraction):
     font_size = 1
     font = ImageFont.truetype(font_path, font_size)
     # +1 is to ensure font size is below requirement
-    while (font.getsize(text)[0]+1) < img_width_fraction*width:
+    while (font.getsize(text)[0]+1) < img_width_fraction*width and font_size < MAX_FONT_SIZE:
         font_size += 1
         font = ImageFont.truetype(font_path, font_size)
     return font
