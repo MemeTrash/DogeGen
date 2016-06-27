@@ -40,13 +40,14 @@ def dogeify_text(eng_text, wow_density, amaze_density, max_phrases):
     sorted_words = sorted(word_ls, key=lambda s: word_freqs[s])[::-1]
     desc_ls = get_doge_descriptors(sorted_words)
     doge_phrases = [desc_ls[i] + ' ' + sorted_words[i] for (i, _) in enumerate(word_ls)]
-    if len(doge_phrases) > max_phrases:
+    if len(doge_phrases) >= max_phrases:
         doge_phrases = doge_phrases[:max_phrases]
-    # add wow's and amaze's
-    num_wows = int(len(doge_phrases) * wow_density)
-    num_amazes = int(len(doge_phrases) * amaze_density)
-    doge_phrases.extend(['wow']*num_wows)
-    doge_phrases.extend(['amaze']*num_amazes)
+    else:
+        while len(doge_phrases) < max_phrases:
+            doge_phrases.append(random.choice([WOW, AMAZE]))
+    # add extra wow's and amaze's
+    doge_phrases = add_extra_phrase(doge_phrases, WOW, wow_density)
+    doge_phrases = add_extra_phrase(doge_phrases, AMAZE, amaze_density)
     return doge_phrases
 
 
@@ -101,3 +102,20 @@ def get_doge_descriptors(word_ls):
             allowed_descriptors = [s for s in possible_descs if s not in chosen_descriptors]
         chosen_descriptors.append(random.choice(allowed_descriptors))
     return chosen_descriptors
+
+
+def add_extra_phrase(phrases_ls, phrase, phrase_density):
+    """
+    Add extra phrase, such as 'wow' or 'amaze', to phrase list.
+
+    Args:
+        phrases_ls (list[str]): List of current phrases.
+        phrase (str): Phrase to add.
+        phrase_density(float): Number of new phrases per original doge phrase. Must be > 0.
+    """
+    if phrases_ls.count(phrase) < (len(phrases_ls) * phrase_density):
+        num_of_phrase = int(len(phrases_ls) * phrase_density)
+    else:
+        num_of_phrase = 0
+    phrases_ls.extend([phrase]*num_of_phrase)
+    return phrases_ls
