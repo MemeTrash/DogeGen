@@ -19,7 +19,7 @@ WOW = 'wow'
 AMAZE = 'amaze'
 
 
-def dogeify_text(eng_text, wow_density, amaze_density):
+def dogeify_text(eng_text, wow_density, amaze_density, max_phrases):
     """
     Translate body of text to Doge form.
     Output can be directly fed into 'make_doge_image' function.
@@ -28,6 +28,7 @@ def dogeify_text(eng_text, wow_density, amaze_density):
         eng_text (str): Piece of english text to translate from.
         wow_density (float): Number of wow's per doge phrase. Must be > 0.
         amaze_density (float): Number of amaze's per doge phrase. Must be > 0.
+        max_phrases (int): Max number of non-(wow/amaze) phrases.
 
     Returns:
         list[str]: List of Doge phrases, translated from eng_text.
@@ -39,6 +40,8 @@ def dogeify_text(eng_text, wow_density, amaze_density):
     sorted_words = sorted(word_ls, key=lambda s: word_freqs[s])[::-1]
     desc_ls = get_doge_descriptors(sorted_words)
     doge_phrases = [desc_ls[i] + ' ' + sorted_words[i] for (i, _) in enumerate(word_ls)]
+    if len(doge_phrases) > max_phrases:
+        doge_phrases = doge_phrases[:max_phrases]
     # add wow's and amaze's
     num_wows = int(len(doge_phrases) * wow_density)
     num_amazes = int(len(doge_phrases) * amaze_density)
