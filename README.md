@@ -15,10 +15,10 @@ The following packages are required:
 * Pyro
 * nltk
 
-All things other than Python can be installed with pip.
-When nltk is installed, please run the following via terminal:
+To install all requirements, please run the following:
 
 ```
+pip install -r requirements.txt
 python -m nltk.downloader treebank maxent_treebank_pos_tagger wordnet wordnet_ic
 ```
 
