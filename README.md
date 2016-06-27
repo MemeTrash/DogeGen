@@ -29,7 +29,7 @@ Run the following from within the project root:
 python dogegen.py "input_text" "image/output/path.jpg" max_phrases
 ```
 
-An image will be generated with Doge quotes pertaining to your text, scraped from webpages with Bing.
+An image will be generated with Doge phrases interpreted and translated from your text.
 
 eg.
 
