@@ -12,13 +12,9 @@ The following packages are required:
 
 * Python 2.7.x
 * Pillow and PIL
-* py_bing_search
-* BeautifulSoup
 * nltk
-* An API key for Bing, from Microsoft Azure.
 
-All can be installed with pip, except for the API key.
-
+All things other than Python can be installed with pip.
 When nltk is installed, please run the following via terminal:
 
 ```
@@ -30,10 +26,16 @@ python -m nltk.downloader treebank maxent_treebank_pos_tagger wordnet wordnet_ic
 Run the following from within the project root:
 
 ```
-python dogegen.py "output_directory" "your_text" "your_api_key"
+python dogegen.py "input_text" "image/output/path.jpg" max_phrases
 ```
 
 An image will be generated with Doge quotes pertaining to your text, scraped from webpages with Bing.
+
+eg.
+
+```
+python dogegen.py "Hello there, my good friend." "../images/result.jpg" 5
+```
 
 ## Contribution
 
