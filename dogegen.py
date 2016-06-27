@@ -1,22 +1,28 @@
+"""
+Entry point for program.
+
+Author: Jack Romo <sharrackor@gmail.com>
+"""
+
 import sys
 import dogegen
-
-FONT_PATH = "./resources/comic_sans_font.ttf"
-IMAGE_PATH = "./resources/doge_orig.jpg"
 
 
 def main(args):
     """
-    Given command line arguments, generates a Doge meme.
+    Given command line arguments, generates a Doge meme or manages a daemon.
 
     Args:
         args (list[str]): List of command line arguments.
     """
-    text = args[1]
-    output_path = args[2]
-    max_phrases = int(args[3])
-    translated = dogegen.dogeify_text(text, 0.3, 0.2, max_phrases)
-    dogegen.draw_doge_meme(IMAGE_PATH, output_path, FONT_PATH, translated)
+    if args[1] == "--daemon-start":
+        dogegen.make_daemon()
+    elif args[1] == "--with-daemon":
+        doge_daemon = dogegen.get_daemon(args[2])
+        doge_daemon.make_meme(args[3], args[4], int(args[5]))
+    else:
+        dogegen.make_meme(args[1], args[2], int(args[3]))
+
 
 if __name__ == "__main__":
     main(sys.argv)

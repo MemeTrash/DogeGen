@@ -11,7 +11,8 @@ This project uses the [MIT License](LICENSE).
 The following packages are required:
 
 * Python 2.7.x
-* Pillow and PIL
+* PIL
+* Pyro
 * nltk
 
 All things other than Python can be installed with pip.
@@ -36,6 +37,20 @@ eg.
 ```
 python dogegen.py "Hello there, my good friend." "../images/result.jpg" 5
 ```
+
+Because ntlk must load over 10mb of language data into memory when initialized, running a daemon and sending it many requests is also possible. Run the following:
+
+```
+python dogegen.py --daemon-start
+```
+
+A uri will be printed. Copy this and, in another terminal / process, run:
+
+```
+python dogegen.py --with-daemon "copied_uri" "input_text" "output_dir.jpg" max_phrases
+```
+
+The first meme will be slow to generate due to nltk initialization, but the rest should take under half a second.
 
 ## Contribution
 
