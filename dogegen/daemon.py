@@ -15,12 +15,13 @@ class DogeDaemon(Pyro.core.ObjBase):
 
     def __init__(self):
         Pyro.core.ObjBase.__init__(self)
+        self._generator = DogeGen()
 
     def make_meme(self, *args):
         """
         Create a meme file and draw to an output directory.
         """
-        main.draw_doge_meme(*args)
+        self._generator.make_meme(*args)
 
     @staticmethod
     def make_daemon():
