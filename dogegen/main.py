@@ -4,7 +4,7 @@ Main doge creation function.
 Author: Jack Romo <sharrackor@gmail.com>
 """
 
-from translate import dogeify_text
+from translate import Translator
 from drawmeme import draw_doge_meme
 
 FONT_PATH = "./resources/comic_sans_font.ttf"
@@ -12,8 +12,8 @@ IMAGE_PATH = "./resources/doge_orig.jpg"
 
 
 class DogeGen(object):
-    def __init__(self, translator):
-        self.translator = translator
+    def __init__(self):
+        self.translator = Translator()
 
     def make_meme(self, text, output_path, max_phrases):
         """
