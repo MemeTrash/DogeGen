@@ -16,7 +16,7 @@ def main(args):
         args (list[str]): List of command line arguments.
     """
     if args[1] == "--daemon-start":
-        DogeDaemon.make_daemon()
+        DogeDaemon.make_daemon(args[2])
     elif args[1] == "--with-daemon":
         DogeDaemon.get_daemon(args[2]).make_meme(args[3], args[4], int(args[5]))
     else:
