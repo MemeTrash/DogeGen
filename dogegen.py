@@ -5,7 +5,7 @@ Author: Jack Romo <sharrackor@gmail.com>
 """
 
 import sys
-import dogegen
+from dogegen import *
 
 
 def main(args):
