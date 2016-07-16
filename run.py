@@ -20,7 +20,7 @@ def main(args):
     elif args[1] == "--with-daemon":
         DogeDaemon.get_daemon(args[2]).make_meme(args[3], args[4], int(args[5]))
     else:
-        DogeGen().make_meme(args[1], args[2], int(args[3]))
+        DogeGen(args[3]).make_meme(args[1], args[2], int(args[4]))
 
 
 if __name__ == "__main__":

@@ -13,9 +13,9 @@ class DogeDaemon(Pyro.core.ObjBase):
     Daemon that can be sent requests for memes.
     """
 
-    def __init__(self):
+    def __init__(self, resources):
         Pyro.core.ObjBase.__init__(self)
-        self._generator = DogeGen()
+        self._generator = DogeGen(resources)
 
     def make_meme(self, *args):
         """
@@ -24,7 +24,7 @@ class DogeDaemon(Pyro.core.ObjBase):
         self._generator.make_meme(*args)
 
     @staticmethod
-    def make_daemon():
+    def make_daemon(resources):
         """
         Make and start up a doge generator daemon.
 
@@ -33,7 +33,7 @@ class DogeDaemon(Pyro.core.ObjBase):
         """
         Pyro.core.initServer()
         daemon = Pyro.core.Daemon()
-        uri = daemon.connect(DogeDaemon())
+        uri = daemon.connect(DogeDaemon(resources))
         print uri
         daemon.requestLoop()
 
