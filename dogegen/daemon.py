@@ -35,6 +35,7 @@ class DogeDaemon(Pyro.core.ObjBase):
         daemon = Pyro.core.Daemon()
         uri = daemon.connect(DogeDaemon(resources))
         print uri
+        print "Ready for wow"
         daemon.requestLoop()
 
     @staticmethod
