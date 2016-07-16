@@ -22,29 +22,29 @@ class DogeDaemon(Pyro.core.ObjBase):
         """
         main.draw_doge_meme(*args)
 
+    @staticmethod
+    def make_daemon():
+        """
+        Make and start up a doge generator daemon.
 
-def make_daemon():
-    """
-    Make and start up a doge generator daemon.
+        Returns:
+            str: URI to access daemon by.
+        """
+        Pyro.core.initServer()
+        daemon = Pyro.core.Daemon()
+        uri = daemon.connect(DogeDaemon())
+        print uri
+        daemon.requestLoop()
 
-    Returns:
-        str: URI to access daemon by.
-    """
-    Pyro.core.initServer()
-    daemon = Pyro.core.Daemon()
-    uri = daemon.connect(DogeDaemon())
-    print uri
-    daemon.requestLoop()
+    @staticmethod
+    def get_daemon(uri):
+        """
+        Get reference to DogeDaemon object from daemon.
 
+        Args:
+            uri (str): URI to locate object with.
 
-def get_daemon(uri):
-    """
-    Get reference to DogeDaemon object from daemon.
-
-    Args:
-        uri (str): URI to locate object with.
-
-    Returns:
-        DogeDaemon: Doge daemon to make meme with.
-    """
-    return Pyro.core.getProxyForURI(uri)
+        Returns:
+            DogeDaemon: Doge daemon to make meme with.
+        """
+        return Pyro.core.getProxyForURI(uri)

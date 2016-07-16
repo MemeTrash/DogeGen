@@ -21,7 +21,7 @@ def main(args):
         doge_daemon = dogegen.get_daemon(args[2])
         doge_daemon.make_meme(args[3], args[4], int(args[5]))
     else:
-        dogegen.make_meme(args[1], args[2], int(args[3]))
+        DogeGen().make_meme(args[1], args[2], int(args[3]))
 
 
 if __name__ == "__main__":
