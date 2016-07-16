@@ -5,7 +5,7 @@ Author: Jack Romo <sharrackor@gmail.com>
 """
 
 import Pyro.core
-import main
+from main import DogeGen
 
 
 class DogeDaemon(Pyro.core.ObjBase):
