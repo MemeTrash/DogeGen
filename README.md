@@ -47,7 +47,7 @@ Because ntlk must load over 10mb of language data into memory when initialized, 
 python dogegen.py --server-start "path/to/resources" "host.name" port
 ```
 
-The server will then run on http://<host.name>/<port>. On another terminal / process, run:
+The server will then run on http://"host.name"/"port". On another terminal / process, run:
 
 ```
 curl
