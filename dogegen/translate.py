@@ -21,7 +21,7 @@ AMAZE = 'amaze'
 class Translator(object):
     def __init__(self):
         self._lemmatizer = WordNetLemmatizer()
-        self._lemmatizer.lemmatize('foo', pos='n') # initialize the memmatizer
+        self._lemmatizer.lemmatize('foo', pos='n') # initialize the lemmatizer
 
     def dogeify_text(self, eng_text, wow_density, amaze_density, max_phrases):
         """
@@ -66,7 +66,7 @@ class Translator(object):
         Returns:
             list[str]: List of lower case words to use from text.
         """
-        phrase_no_punct = eng_text.translate(None, string.punctuation)
+        phrase_no_punct = "".join([ch for ch in eng_text if ch not in string.punctuation])
         tagged_words = nltk.pos_tag([w.lower() for w in phrase_no_punct.split(' ') if w.isalpha()])
         chosen_words = []
         for word, tag in tagged_words:
