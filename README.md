@@ -22,6 +22,9 @@ pip install -r requirements.txt
 python -m nltk.downloader averaged_perceptron_tagger treebank maxent_treebank_pos_tagger wordnet wordnet_ic
 ```
 
+You must also go into the dogegen/translate.py file and change the
+NLTK_PATH variable to wherever your nltk files are stored.
+
 ## Execution
 
 Run the following from within the project root:
@@ -40,6 +43,8 @@ python dogegen.py "Hello there, my good friend." "../images/result.jpg" "./resou
 
 Generally, the resources directory can just be left as "./resources" if
 you are inside the root of the project directory.
+
+## Running as a server
 
 Because ntlk must load over 10mb of language data into memory when initialized, running a server and sending it many requests is also possible. Run the following:
 
@@ -63,6 +68,22 @@ To close the server, run
 ```
 curl -X POST <your_host>:<your_port>/shutdown
 ```
+
+## Running as a Unix service
+
+To run as a systemd service, put the dogegen.service file in the /etc/systemd/system directory.
+Then, copy the contents of this repository into /usr/local/bin/DogeGen.
+
+After this, you can run
+
+```
+sudo systemctl start dogegen.service
+```
+
+using start, stop, restart and status commands as needed.
+
+This will start the server, and it can be used as described above.
+(Sending the shutdown POST request will now kill the service.)
 
 ## Contribution
 

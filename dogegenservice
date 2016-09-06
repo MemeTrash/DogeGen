@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Called by systemd to start and stop the service.
+
+case "$1" in
+    start)
+        python /usr/local/bin/DogeGen/run.py --service-start "/usr/local/bin/DogeGen/resources" "localhost" 3000
+        ;;
+    stop)
+        kill `cat /var/run/dogegenservice.pid`
+        sudo rm /var/run/dogegenservice.pid
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
+
+exit 0

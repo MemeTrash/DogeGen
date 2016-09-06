@@ -4,21 +4,37 @@ Entry point for program.
 Author: Jack Romo <sharrackor@gmail.com>
 """
 
-import sys
+import sys, os
 from dogegen import *
 
 
 def main(args):
     """
-    Given command line arguments, generate a Doge meme or start a server.
+    Given command line arguments, generate a Doge meme or start a server / Unix service.
+
+    NB: The 'service' option is used internally by the dogegenservice script.
 
     Args:
         args (list[str]): List of command line arguments.
     """
     if args[1] == "--server-start":
         start_server(args)
+    elif args[1] == "--service-start":
+        start_service(args)
     else:
         make_meme_no_server(args)
+
+
+def start_service(args):
+    """
+    Given command line arguments, start a server as a Unix service.
+
+    Args:
+        args (list[str]): List of command line arguments.
+    """
+    with open("/var/run/dogegenservice.pid", 'w') as pid_file:
+        pid_file.write(str(os.getpid()))
+    start_server(args)
 
 
 def start_server(args):

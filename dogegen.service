@@ -1,0 +1,9 @@
+[Unit]
+Description=Doge Meme Generator Service
+
+[Service]
+ExecStart=/usr/local/bin/DogeGen/dogegenservice start
+ExecStop=/usr/local/bin/DogeGen/dogegenservice stop
+
+[Install]
+WantedBy=multi-user.target

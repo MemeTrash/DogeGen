@@ -18,8 +18,12 @@ SO = 'so'
 WOW = 'wow'
 AMAZE = 'amaze'
 
+NLTK_PATH = '/home/jack/nltk_data'  # nltk is bad at downloading things, so this is hardcoded
+
+
 class Translator(object):
     def __init__(self):
+        nltk.data.path.append(NLTK_PATH)
         self._lemmatizer = WordNetLemmatizer()
         self._lemmatizer.lemmatize('foo', pos='n') # initialize the lemmatizer
 
