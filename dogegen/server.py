@@ -31,8 +31,8 @@ class DogeServer(object):
         DogeServer.app.run(debug=True, host=host_name, port=port)
 
     @staticmethod
-    @app.route('/makememe/<string:inptext>/<string:outdir>/<int:maxphrases>')
-    def makememe(inptext, outdir, maxphrases):
+    @app.route('/makememe')
+    def makememe():
         """
         Make a meme upon a server GET request.
 
@@ -45,6 +45,9 @@ class DogeServer(object):
             str: Directory of image.
 
         """
+        inptext = request.args.get('inptext')
+        outdir = request.args.get('outdir')
+        maxphrases = int(request.args.get('maxphrases'))
         DogeServer.dogegen.make_meme(inptext, outdir, maxphrases)
         return outdir
 
