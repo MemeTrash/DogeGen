@@ -36,11 +36,6 @@ class DogeServer(object):
         """
         Make a meme upon a server GET request.
 
-        Args:
-            inptext (str): Escaped input text.
-            outdir (str): Escaped output directory, including image name and extension.
-            maxphrases (int): Number of phrases allowed. No escaping needed.
-
         Returns:
             str: Directory of image.
 
